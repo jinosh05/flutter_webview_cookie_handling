@@ -49,6 +49,8 @@ class _MyAppState extends State<MyApp> {
                   javascriptMode: JavascriptMode.unrestricted,
                   onWebViewCreated: (WebViewController webViewController) {
                     _controller.complete(webViewController);
+                    webViewController.clearCache();
+                    _cookieManager.clearCookies();
                   },
                   onProgress: (int progress) {
                     debugPrint('WebView is loading (progress : $progress%)');
