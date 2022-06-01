@@ -20,6 +20,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
+  late WebViewController _mycontroller;
   final CookieManager _cookieManager = CookieManager();
 
   @override
@@ -51,6 +52,9 @@ class _MyAppState extends State<MyApp> {
                     _controller.complete(webViewController);
                     webViewController.clearCache();
                     _cookieManager.clearCookies();
+                    setState(() {
+                      _mycontroller = webViewController;
+                    });
                   },
                   onProgress: (int progress) {
                     debugPrint('WebView is loading (progress : $progress%)');
@@ -64,7 +68,15 @@ class _MyAppState extends State<MyApp> {
                   },
                   gestureNavigationEnabled: true,
                 ),
-              )
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    _mycontroller.clearCache();
+                  },
+                  child: const Text('Clear Cache'))
             ],
           ),
         ),
