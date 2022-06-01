@@ -44,30 +44,23 @@ class _MyAppState extends State<MyApp> {
                 height: 500,
                 width: double.infinity,
                 child: WebView(
-                  initialUrl: 'https://flutter.dev',
+                  // Initilise to my github page
+                  initialUrl: 'https://github.com/jinosh05',
                   javascriptMode: JavascriptMode.unrestricted,
                   onWebViewCreated: (WebViewController webViewController) {
                     _controller.complete(webViewController);
                   },
                   onProgress: (int progress) {
-                    print('WebView is loading (progress : $progress%)');
+                    debugPrint('WebView is loading (progress : $progress%)');
                   },
-                  navigationDelegate: (NavigationRequest request) {
-                    if (request.url.startsWith('https://www.youtube.com/')) {
-                      print('blocking navigation to $request}');
-                      return NavigationDecision.prevent;
-                    }
-                    print('allowing navigation to $request');
-                    return NavigationDecision.navigate;
-                  },
+
                   onPageStarted: (String url) {
-                    print('Page started loading: $url');
+                    debugPrint('Page started loading: $url');
                   },
                   onPageFinished: (String url) {
-                    print('Page finished loading: $url');
+                    debugPrint('Page finished loading: $url');
                   },
                   gestureNavigationEnabled: true,
-                  backgroundColor: const Color(0x00000000),
                 ),
               )
             ],
