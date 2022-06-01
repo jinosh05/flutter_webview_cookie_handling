@@ -5,7 +5,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 void main(List<String> args) {
   runApp(const MaterialApp(
-    home: MyApp(),
+    home: SafeArea(child: MyApp()),
     debugShowCheckedModeBanner: false,
   ));
 }
@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
               ),
               SizedBox(
                 height: 500,
-                width: double.infinity,
+                width: MediaQuery.of(context).size.width - 30,
                 child: WebView(
                   // Initilise to my github page
                   initialUrl: 'https://github.com/jinosh05',
